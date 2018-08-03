@@ -1,3 +1,5 @@
+![](https://badgen.net/badge/CodeX%20Editor/v1.0/gray)
+
 # Code Plugin for CodeX Editor
 
 Paste code examples into your article.
