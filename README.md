@@ -1,51 +1,77 @@
-![](https://badgen.net/badge/CodeX%20Editor/v1.0/gray)
+![](https://badgen.net/badge/CodeX%20Editor/v2.0/blue)
 
-# Code Plugin for CodeX Editor
+# Code Tool for CodeX Editor
 
-Paste code examples into your article.
+Code Tool for the [CodeX Editor](https://ifmo.su/editor) allows to include code examples in your articles.
 
-## Install via npm
+![](https://capella.pics/77cc593f-0384-4df2-b9d1-d9c7d6d96b7d.jpg)
+
+## Installation
+
+### Install via NPM
+
+Get the package
 
 ```shell
-npm i --save codex.editor.code
+npm i --save-dev codex.editor.code
 ```
 
-#### Connect with Webpack
+Include module at your application
 
-Include module in your application
-
-```js
-require('codex.editor.code');
+```javascript
+const RawTool = require('codex.editor.code');
 ```
 
-Include CSS file
+### Download to your project's source dir
 
-```css
-@import url("~codex.editor.code/lib/code.css");
+1. Upload folder `dist` from repository
+2. Add `dist/bundle.js` file to your page.
+
+### Load from CDN
+
+You can load specific version of package from [jsDelivr CDN](https://www.jsdelivr.com/package/npm/codex.editor.code).
+
+`https://cdn.jsdelivr.net/npm/codex.editor.code@2.0.0`
+
+Require this script on a page with CodeX Editor.
+
+```html
+<script src="..."></script>
 ```
 
-## Install directly
+## Usage
 
-1. Download folder `lib` from repository
-2. Add `lib/bundle.js` and `lib/bundle.css` files to your page.
+Add a new Tool to the `tools` property of the CodeX Editor initial config.
 
-## CodeX Editor
+```javascript
+var editor = CodexEditor({
+  ...
+  
+  tools: {
+    ...
+    code: Code,
+  }
+  
+  ...
+});
+```
 
-API oriented, open-source, block-styled Edtior.
+## Config Params
 
-https://github.com/codex-team/codex.editor
+| Field       | Type     | Description                    |
+| ----------- | -------- | -------------------------------|
+| placeholder | `string` | Code Tool's placeholder string |
 
-## Authors
+## Output data
 
-We are small team of Web-developing fans consisting of IFMO students and graduates located in St. Petersburg, Russia.
-Fell free to give us a feedback on <a href="mailto::team@ifmo.su">team@ifmo.su</a>
+This Tool returns raw code.
 
-https://ifmo.su
+```json
+{
+    "type" : "code",
+    "data" : {
+        "code": "body {\n font-size: 14px;\n line-height: 16px;\n}",
+    }
+}
+```
 
-### Follow us!
-
-VK: https://vk.com/codex_team
-
-Telegram: https://t.me/codex_team
-
-Instagram: https://www.instagram.com/codex_team
