@@ -2,7 +2,5 @@
     min-height: 200px;
     font-size: 15px;
     resize: vertical;
-    border-radius: 3px;
-    border: 1px solid #ededed;
-    padding: 20px;
+    font-family: Menlo, Monaco, Consolas, Courier New, monospace;
 }

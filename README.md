@@ -4,7 +4,7 @@
 
 Code Tool for the [CodeX Editor](https://ifmo.su/editor) allows to include code examples in your articles.
 
-![](https://capella.pics/77cc593f-0384-4df2-b9d1-d9c7d6d96b7d.jpg)
+![](https://capella.pics/77cc593f-0384-4df2-b9d1-d9c7d6d96b7d.jpg/cover/eff2f5)
 
 ## Installation
 
@@ -19,7 +19,7 @@ npm i --save-dev codex.editor.code
 Include module at your application
 
 ```javascript
-const RawTool = require('codex.editor.code');
+const CodeTool = require('codex.editor.code');
 ```
 
 ### Download to your project's source dir
@@ -49,7 +49,7 @@ var editor = CodexEditor({
   
   tools: {
     ...
-    code: Code,
+    code: CodeTool,
   }
   
   ...
@@ -64,7 +64,7 @@ var editor = CodexEditor({
 
 ## Output data
 
-This Tool returns raw code.
+This Tool returns code.
 
 ```json
 {

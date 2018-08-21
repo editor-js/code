@@ -20,7 +20,7 @@ module.exports = {
     path: __dirname + '/dist',
     publicPath: '/',
     filename: 'bundle.js',
-    library: "Code",
+    library: "CodeTool",
     libraryTarget: 'umd'
   }
 };

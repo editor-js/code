@@ -4,7 +4,7 @@
 require('./index.css').toString();
 
 /**
- * Code Tool for CodeX Editor
+ * CodeTool for CodeX Editor
  *
  * @author CodeX (team@ifmo.su)
  * @copyright CodeX 2018
@@ -12,7 +12,7 @@ require('./index.css').toString();
  * @version 2.0.0
  */
 
-class Code {
+class CodeTool {
   /**
    * Should this tool be displayed at the Editor's Toolbox
    * @returns {boolean}
@@ -23,7 +23,7 @@ class Code {
   }
 
   /**
-   * Allow to press Enter inside the Code Tool textarea
+   * Allow to press Enter inside the CodeTool textarea
    * @returns {boolean}
    * @public
    */
@@ -93,7 +93,7 @@ class Code {
 
   /**
    * Extract Tool's data from the view
-   * @param {HTMLDivElement} codeWrapper - RawTool's wrapper, containing textarea with raw HTML code
+   * @param {HTMLDivElement} codeWrapper - CodeTool's wrapper, containing textarea with code
    * @returns {CodeData} - saved plugin code
    * @public
    */
@@ -112,7 +112,7 @@ class Code {
   }
 
   /**
-   * Default placeholder for RawTool's textarea
+   * Default placeholder for CodeTool's textarea
    *
    * @public
    * @returns {string}
@@ -123,4 +123,4 @@ class Code {
 
 }
 
-module.exports = Code;
+module.exports = CodeTool;
