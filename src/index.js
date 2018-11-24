@@ -55,6 +55,10 @@ class CodeTool {
       textarea: 'ce-code__textarea'
     };
 
+    this.nodes = {
+      textarea: null
+    };
+
     this.data = {
       code: data.code || ''
     };
@@ -78,6 +82,8 @@ class CodeTool {
     textarea.placeholder = this.placeholder;
 
     wrapper.appendChild(textarea);
+
+    this.nodes.textarea = textarea;
 
     return wrapper;
   }
@@ -104,6 +110,42 @@ class CodeTool {
   }
 
   /**
+   * onPaste callback fired from Editor`s core
+   * @param {PasteEvent} event - event with pasted content
+   */
+  onPaste(event) {
+    if (event.type !== 'tag') {
+      return;
+    }
+
+    const content = event.detail.data;
+
+    this.data = {
+      code: content.innerHTML
+    };
+  }
+
+  /**
+   * Returns Tool`s data from private property
+   * @return {*}
+   */
+  get data() {
+    return this._data;
+  }
+
+  /**
+   * Set Tool`s data to private property and update view
+   * @param {CodeData} data
+   */
+  set data(data) {
+    this._data = data;
+
+    if (this.nodes.textarea) {
+      this.nodes.textarea.textContent = data.code;
+    }
+  }
+
+  /**
    * Get Tool icon's SVG
    * @return {string}
    */
@@ -126,16 +168,11 @@ class CodeTool {
    *  Provides configuration to handle CODE tag.
    *
    * @static
-   * @return {{tags: string[], patternHandler: (function(*): {code: *})}}
+   * @return {{tags: string[]}}
    */
-  static get onPaste() {
+  static get pasteConfig() {
     return {
       tags: [ 'code' ],
-      handler: (code) => {
-        return {
-          code: code.innerHTML
-        };
-      }
     };
   }
 
