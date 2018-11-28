@@ -55,11 +55,16 @@ class CodeTool {
       textarea: 'ce-code__textarea'
     };
 
+    this.nodes = {
+      holder: null,
+      textarea: null
+    };
+
     this.data = {
       code: data.code || ''
     };
 
-    this.element = this.drawView();
+    this.nodes.holder = this.drawView();
   }
 
   /**
@@ -79,16 +84,18 @@ class CodeTool {
 
     wrapper.appendChild(textarea);
 
+    this.nodes.textarea = textarea;
+
     return wrapper;
   }
 
   /**
    * Return Tool's view
-   * @returns {HTMLDivElement} this.element - Code's wrapper
+   * @returns {HTMLDivElement} this.nodes.holder - Code's wrapper
    * @public
    */
   render() {
-    return this.element;
+    return this.nodes.holder;
   }
 
   /**
@@ -101,6 +108,38 @@ class CodeTool {
     return {
       code: codeWrapper.querySelector('textarea').value
     };
+  }
+
+  /**
+   * onPaste callback fired from Editor`s core
+   * @param {PasteEvent} event - event with pasted content
+   */
+  onPaste(event) {
+    const content = event.detail.data;
+
+    this.data = {
+      code: content.innerHTML
+    };
+  }
+
+  /**
+   * Returns Tool`s data from private property
+   * @return {*}
+   */
+  get data() {
+    return this._data;
+  }
+
+  /**
+   * Set Tool`s data to private property and update view
+   * @param {CodeData} data
+   */
+  set data(data) {
+    this._data = data;
+
+    if (this.nodes.textarea) {
+      this.nodes.textarea.textContent = data.code;
+    }
   }
 
   /**
@@ -126,16 +165,11 @@ class CodeTool {
    *  Provides configuration to handle CODE tag.
    *
    * @static
-   * @return {{tags: string[], patternHandler: (function(*): {code: *})}}
+   * @return {{tags: string[]}}
    */
-  static get onPaste() {
+  static get pasteConfig() {
     return {
       tags: [ 'code' ],
-      handler: (code) => {
-        return {
-          code: code.innerHTML
-        };
-      }
     };
   }
 
