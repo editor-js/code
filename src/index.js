@@ -114,10 +114,6 @@ class CodeTool {
    * @param {PasteEvent} event - event with pasted content
    */
   onPaste(event) {
-    if (event.type !== 'tag') {
-      return;
-    }
-
     const content = event.detail.data;
 
     this.data = {
