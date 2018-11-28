@@ -56,6 +56,7 @@ class CodeTool {
     };
 
     this.nodes = {
+      holder: null,
       textarea: null
     };
 
@@ -63,7 +64,7 @@ class CodeTool {
       code: data.code || ''
     };
 
-    this.element = this.drawView();
+    this.nodes.holder = this.drawView();
   }
 
   /**
@@ -90,11 +91,11 @@ class CodeTool {
 
   /**
    * Return Tool's view
-   * @returns {HTMLDivElement} this.element - Code's wrapper
+   * @returns {HTMLDivElement} this.nodes.holder - Code's wrapper
    * @public
    */
   render() {
-    return this.element;
+    return this.nodes.holder;
   }
 
   /**
