@@ -58,28 +58,9 @@ var editor = CodexEditor({
 
 ## Config Params
 
-| Field        | Type     | Default value  |  Description                       |
-| ------------ | -------- | -------------- | ---------------------------------- |
-| placeholder  | `string` | `'Enter code'` | Code Tool's placeholder string     |
-| toolboxTitle | `string` | `'Code'`       | Code Tool's title for Toolbox icon |
-
-```javascript
-var editor = CodexEditor({
-  ...
-  
-  tools: {
-    ...
-    code: {
-      class: CodeTool,
-      config: {
-        title: 'Code Tool'
-      }
-    }
-  }
-  
-  ...
-});
-```
+| Field       | Type     | Description                    |
+| ----------- | -------- | -------------------------------|
+| placeholder | `string` | Code Tool's placeholder string |
 
 ## Output data
 
