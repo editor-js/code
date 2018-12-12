@@ -2,5 +2,8 @@
     min-height: 200px;
     font-size: 13px;
     resize: vertical;
+    white-space: pre;
+    overflow-x: auto;
+    word-wrap: normal;
     font-family: Menlo, Monaco, Consolas, Courier New, monospace;
 }
