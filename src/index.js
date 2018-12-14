@@ -166,7 +166,7 @@ class CodeTool {
    */
   static get pasteConfig() {
     return {
-      tags: [ 'code' ],
+      tags: [ 'pre' ],
     };
   }
 
