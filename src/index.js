@@ -107,9 +107,8 @@ class CodeTool {
    */
   onPaste(event) {
     const content = event.detail.data;
-
     this.data = {
-      code: content.innerHTML
+      code: content.textContent
     };
   }
 
