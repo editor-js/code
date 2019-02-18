@@ -168,18 +168,6 @@ class CodeTool {
       tags: [ 'pre' ],
     };
   }
-
-  /**
-   * Specify sanitizer configuration for Code Tool saved data
-   *
-   * @static
-   * @return {{code: {}}}
-   */
-  static get sanitize() {
-    return {
-      code: {}
-    };
-  }
 }
 
 module.exports = CodeTool;
