@@ -5,7 +5,14 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: ['babel-loader']
+        use: [
+          {
+            loader: 'babel-loader',
+            query: {
+              presets: [ '@babel/preset-env' ],
+            },
+          },
+        ]
       },
       {
         test: /\.css$/,
