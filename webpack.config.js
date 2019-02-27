@@ -17,8 +17,8 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          "style-loader",
-          "css-loader"
+          'style-loader',
+          'css-loader'
         ]
       }
     ]
@@ -27,7 +27,7 @@ module.exports = {
     path: __dirname + '/dist',
     publicPath: '/',
     filename: 'bundle.js',
-    library: "CodeTool",
+    library: 'CodeTool',
     libraryTarget: 'umd'
   }
 };
