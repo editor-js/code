@@ -1,8 +1,8 @@
-![](https://badgen.net/badge/CodeX%20Editor/v2.0/blue)
+![](https://badgen.net/badge/Editor.js/v2.0/blue)
 
-# Code Tool for CodeX Editor
+# Code Tool for Editor.js
 
-Code Tool for the [CodeX Editor](https://ifmo.su/editor) allows to include code examples in your articles.
+Code Tool for the [Editor.js](https://ifmo.su/editor) allows to include code examples in your articles.
 
 ![](https://capella.pics/77cc593f-0384-4df2-b9d1-d9c7d6d96b7d.jpg/cover/eff2f5)
 
@@ -13,13 +13,13 @@ Code Tool for the [CodeX Editor](https://ifmo.su/editor) allows to include code 
 Get the package
 
 ```shell
-npm i --save-dev codex.editor.code
+npm i --save-dev @editorjs/code
 ```
 
 Include module at your application
 
 ```javascript
-const CodeTool = require('codex.editor.code');
+const CodeTool = require('@editorjs/code');
 ```
 
 ### Download to your project's source dir
@@ -29,11 +29,11 @@ const CodeTool = require('codex.editor.code');
 
 ### Load from CDN
 
-You can load specific version of package from [jsDelivr CDN](https://www.jsdelivr.com/package/npm/codex.editor.code).
+You can load specific version of package from [jsDelivr CDN](https://www.jsdelivr.com/package/npm/@editorjs/code).
 
-`https://cdn.jsdelivr.net/npm/codex.editor.code@2.0.0`
+`https://cdn.jsdelivr.net/npm/@editorjs/code@2.0.0`
 
-Require this script on a page with CodeX Editor.
+Require this script on a page with Editor.js.
 
 ```html
 <script src="..."></script>
@@ -41,10 +41,10 @@ Require this script on a page with CodeX Editor.
 
 ## Usage
 
-Add a new Tool to the `tools` property of the CodeX Editor initial config.
+Add a new Tool to the `tools` property of the Editor.js initial config.
 
 ```javascript
-var editor = CodexEditor({
+var editor = EditorJS({
   ...
   
   tools: {

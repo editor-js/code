@@ -4,7 +4,7 @@
 require('./index.css').toString();
 
 /**
- * CodeTool for CodeX Editor
+ * CodeTool for Editor.js
  *
  * @author CodeX (team@ifmo.su)
  * @copyright CodeX 2018
@@ -32,7 +32,7 @@ class CodeTool {
    *
    * @param {CodeData} data — previously saved plugin code
    * @param {Object} config - user config for Tool
-   * @param {Object} api - CodeX Editor API
+   * @param {Object} api - Editor.js API
    */
   constructor({data, config, api}) {
     this.api = api;
@@ -157,7 +157,7 @@ class CodeTool {
   }
 
   /**
-   *  Used by Codex Editor paste handling API.
+   *  Used by Editor.js paste handling API.
    *  Provides configuration to handle CODE tag.
    *
    * @static
