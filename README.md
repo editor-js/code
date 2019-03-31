@@ -4,7 +4,7 @@
 
 Code Tool for the [Editor.js](https://ifmo.su/editor) allows to include code examples in your articles.
 
-![](https://capella.pics/77cc593f-0384-4df2-b9d1-d9c7d6d96b7d.jpg/cover/eff2f5)
+![](https://capella.pics/8df022f5-b4d5-4d30-a527-2a0efb63f291.jpg)
 
 ## Installation
 
