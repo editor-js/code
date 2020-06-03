@@ -89,6 +89,12 @@ class CodeTool {
     return this.nodes.holder;
   }
 
+  static get sanitize() {
+    return {
+      code: true
+    }
+  }
+
   /**
    * Extract Tool's data from the view
    * @param {HTMLDivElement} codeWrapper - CodeTool's wrapper, containing textarea with code
