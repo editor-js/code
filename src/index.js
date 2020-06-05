@@ -168,6 +168,15 @@ class CodeTool {
       tags: [ 'pre' ],
     };
   }
+
+  /**
+   * Automatic sanitize config
+   */
+  static get sanitize() {
+    return {
+      code: true // Allow HTML tags
+    };
+  }
 }
 
 module.exports = CodeTool;
