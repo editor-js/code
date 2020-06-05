@@ -127,7 +127,7 @@ class CodeTool {
   /**
    * Returns Tool`s data from private property
    *
-   * @returns {*}
+   * @returns {CodeData}
    */
   get data() {
     return this._data;
