@@ -1,6 +1,6 @@
 {
   "name": "@editorjs/code",
-  "version": "2.4.2",
+  "version": "2.5.0",
   "keywords": [
     "codex editor",
     "code",
@@ -18,14 +18,14 @@
   },
   "author": {
     "name": "CodeX",
-    "email": "team@ifmo.su"
+    "email": "team@codex.so"
   },
   "devDependencies": {
     "@babel/core": "^7.3.4",
     "@babel/preset-env": "^7.3.4",
     "babel-loader": "^8.0.5",
-    "css-loader": "^1.0.0",
-    "style-loader": "^0.21.0",
+    "css-loader": "^3.5.3",
+    "style-loader": "^1.2.1",
     "webpack": "^4.29.5",
     "webpack-cli": "^3.2.3"
   }
