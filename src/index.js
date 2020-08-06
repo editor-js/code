@@ -86,6 +86,22 @@ class CodeTool {
     textarea.autocapitalize="off";
     textarea.dataset.placeholder = this.placeholder;
 
+    // Tab Feature
+    textarea.addEventListener("keydown", (e)=>{
+      if(e.which === 9){
+        var range = window.getSelection().getRangeAt(0); 
+        var caretPosition= range.endOffset; 
+  
+        var tabNode = document.createTextNode("\u00a0\u00a0\u00a0\u00a0"); 
+        range.insertNode(tabNode); 
+  
+        range.setStartAfter(tabNode); 
+        range.setEndAfter(tabNode);  
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    })
+
     wrapper.appendChild(textarea);
 
     this.nodes.textarea = textarea;
