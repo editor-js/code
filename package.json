@@ -1,5 +1,5 @@
 {
-  "name": "@editorjs/code",
+  "name": "@itech-indrustries/code",
   "version": "3.0.0",
   "keywords": [
     "codex editor",
@@ -10,15 +10,15 @@
   ],
   "description": "Code Tool for Editor.js",
   "license": "MIT",
-  "repository": "https://github.com/editor-js/code",
+  "repository": "https://github.com/itech-indrustries/code",
   "main": "./dist/bundle.js",
   "scripts": {
     "build": "webpack --mode production",
     "build:dev": "webpack --mode development --watch"
   },
   "author": {
-    "name": "CodeX",
-    "email": "team@codex.so"
+    "name": "Itech Indrustries",
+    "email": "review@itechindrustries.co"
   },
   "devDependencies": {
     "@babel/core": "^7.3.4",

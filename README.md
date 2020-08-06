@@ -1,4 +1,4 @@
-![](https://badgen.net/badge/Editor.js/v2.0/blue)
+![](https://badgen.net/badge/@Editorjs-code/v2.0/blue) [![](https://data.jsdelivr.com/v1/package/npm/@itech-indrustries/code/badge)](https://www.jsdelivr.com/package/npm/@itech-indrustries/code)
 
 # Code Tool for Editor.js
 
@@ -13,13 +13,13 @@ Code Tool for the [Editor.js](https://ifmo.su/editor) allows to include code exa
 Get the package
 
 ```shell
-npm i --save-dev @editorjs/code
+npm i @itech-indrustries/code
 ```
 
 Include module at your application
 
 ```javascript
-const CodeTool = require('@editorjs/code');
+const CodeTool = require('@itech-indrustries/code');
 ```
 
 ### Download to your project's source dir
@@ -29,14 +29,14 @@ const CodeTool = require('@editorjs/code');
 
 ### Load from CDN
 
-You can load specific version of package from [jsDelivr CDN](https://www.jsdelivr.com/package/npm/@editorjs/code).
+You can load specific version of package from [jsDelivr CDN](https://www.jsdelivr.com/package/npm/@itech-indrustries/code).
 
-`https://cdn.jsdelivr.net/npm/@editorjs/code@2.0.0`
+`https://cdn.jsdelivr.net/npm/@editorjs/code@3.0.0`
 
 Require this script on a page with Editor.js.
 
 ```html
-<script src="..."></script>
+<script src="https://cdn.jsdelivr.net/npm/@itech-indrustries/code@latest"></script>
 ```
 
 ## Usage
