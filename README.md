@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <a href="https://editorjs.io/"><p align="center"><img src="https://capella.pics/79ce946a-d636-41cd-aa96-d3bc5ecfde03.jpg"></p></a>
 
 [![](https://flat.badgen.net/npm/v/@editorjs/editorjs?icon=npm)](https://www.npmjs.com/package/@editorjs/editorjs)
@@ -254,12 +255,15 @@ Feel free to contact: <a href="mailto:team@codex.so?subject=Editor.js feedback">
 [codex.so](https://codex.so)
 =======
 ![](https://badgen.net/badge/Editor.js/v2.0/blue)
+=======
+![](https://badgen.net/badge/@Editorjs-code/v2.0/blue) [![](https://data.jsdelivr.com/v1/package/npm/@itech-indrustries/code/badge)](https://www.jsdelivr.com/package/npm/@itech-indrustries/code)
+>>>>>>> 4a2107e5d2029cb113c72499c07942dc2b7a152a
 
 # Code Tool for Editor.js
 
 Code Tool for the [Editor.js](https://ifmo.su/editor) allows to include code examples in your articles.
 
-![](https://capella.pics/8df022f5-b4d5-4d30-a527-2a0efb63f291.jpg)
+![Screenshot from 2020-08-07 00-59-31](https://user-images.githubusercontent.com/55910733/89574223-6cee7300-d849-11ea-8ff5-a49154911e3e.png)
 
 ## Installation
 
@@ -268,13 +272,13 @@ Code Tool for the [Editor.js](https://ifmo.su/editor) allows to include code exa
 Get the package
 
 ```shell
-npm i --save-dev @editorjs/code
+npm i @itech-indrustries/code
 ```
 
 Include module at your application
 
 ```javascript
-const CodeTool = require('@editorjs/code');
+const CodeTool = require('@itech-indrustries/code');
 ```
 
 ### Download to your project's source dir
@@ -284,14 +288,14 @@ const CodeTool = require('@editorjs/code');
 
 ### Load from CDN
 
-You can load specific version of package from [jsDelivr CDN](https://www.jsdelivr.com/package/npm/@editorjs/code).
+You can load specific version of package from [jsDelivr CDN](https://www.jsdelivr.com/package/npm/@itech-indrustries/code).
 
-`https://cdn.jsdelivr.net/npm/@editorjs/code@2.0.0`
+`https://cdn.jsdelivr.net/npm/@editorjs/code@3.0.0`
 
 Require this script on a page with Editor.js.
 
 ```html
-<script src="..."></script>
+<script src="https://cdn.jsdelivr.net/npm/@itech-indrustries/code@latest"></script>
 ```
 
 ## Usage

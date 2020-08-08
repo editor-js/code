@@ -50,7 +50,7 @@ class CodeTool {
       baseClass: this.api.styles.block,
       input: this.api.styles.input,
       wrapper: 'ce-code',
-      textarea: 'ce-code__textarea',
+      textarea: 'ce-code__precode',
     };
 
     this.nodes = {
@@ -73,13 +73,34 @@ class CodeTool {
    */
   drawView() {
     const wrapper = document.createElement('div'),
-        textarea = document.createElement('textarea');
+        textarea = document.createElement('pre');
 
     wrapper.classList.add(this.CSS.baseClass, this.CSS.wrapper);
     textarea.classList.add(this.CSS.textarea, this.CSS.input);
-    textarea.textContent = this.data.code;
+    textarea.innerHTML = this.data.code;
 
-    textarea.placeholder = this.placeholder;
+    textarea.contentEditable = 'true';
+    textarea.spellcheck = false;
+    textarea.autocomplete="off";
+    textarea.autocorrect="off";
+    textarea.autocapitalize="off";
+    textarea.dataset.placeholder = this.placeholder;
+
+    // Tab Feature
+    textarea.addEventListener("keydown", (e)=>{
+      if(e.which === 9){
+        var range = window.getSelection().getRangeAt(0); 
+        var caretPosition= range.endOffset; 
+  
+        var tabNode = document.createTextNode("\u00a0\u00a0\u00a0\u00a0"); 
+        range.insertNode(tabNode); 
+  
+        range.setStartAfter(tabNode); 
+        range.setEndAfter(tabNode);  
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    })
 
     wrapper.appendChild(textarea);
 
@@ -107,7 +128,7 @@ class CodeTool {
    */
   save(codeWrapper) {
     return {
-      code: codeWrapper.querySelector('textarea').value,
+      code: codeWrapper.querySelector('pre').innerHTML,
     };
   }
 
@@ -142,7 +163,7 @@ class CodeTool {
     this._data = data;
 
     if (this.nodes.textarea) {
-      this.nodes.textarea.textContent = data.code;
+      this.nodes.textarea.innerHTML = data.code;
     }
   }
 

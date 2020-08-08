@@ -1,14 +1,19 @@
-.ce-code__textarea {
-    min-height: 200px;
-    font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+.ce-code__precode {
+    font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
     color: #41314e;
     line-height: 1.6em;
-    font-size: 12px;
-    background: #f8f7fa;
-    border: 1px solid #f1f1f4;
+    font-size: 16px;
+    background: #bacadb4f;
+    border: 1px solid #f6f8fa;
     box-shadow: none;
     white-space: pre;
     word-wrap: normal;
     overflow-x: auto;
-    resize: vertical;
+    border-radius: 10px;
+    padding: 1rem;
 }
+.ce-code__precode[contentEditable=true][data-placeholder]:empty::before {
+    content: attr(data-placeholder);
+    color: #707684;
+    font-weight: normal;
+  }
