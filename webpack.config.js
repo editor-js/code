@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /**
  * Webpack configuration
  *
@@ -110,4 +111,38 @@ module.exports = (env, argv) => {
       ],
     },
   };
+=======
+module.exports = {
+  entry: './src/index.js',
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader',
+            query: {
+              presets: [ '@babel/preset-env' ],
+            },
+          },
+        ]
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader'
+        ]
+      }
+    ]
+  },
+  output: {
+    path: __dirname + '/dist',
+    publicPath: '/',
+    filename: 'bundle.js',
+    library: 'CodeTool',
+    libraryTarget: 'umd'
+  }
+>>>>>>> 8b74d1bef0a925587841dc79a644f0fef2341a23
 };

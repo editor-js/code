@@ -1,4 +1,5 @@
 .idea/
+<<<<<<< HEAD
 build/sprite.svg
 docs/
 example/
@@ -17,3 +18,12 @@ tslint.json
 webpack.config.js
 yarn.lock
 .github
+=======
+src/
+.eslintrc
+.jshintrc
+.postcssrc
+.stylelintrc
+webpack.config.js
+yarn.lock
+>>>>>>> 8b74d1bef0a925587841dc79a644f0fef2341a23

@@ -1,5 +1,6 @@
 {
   "rules": {
+<<<<<<< HEAD
     "at-rule-empty-line-before": [
       "always",
       {
@@ -12,6 +13,15 @@
         ],
       }
     ],
+=======
+    "at-rule-empty-line-before": [ "always", {
+      except: [
+        "blockless-after-same-name-blockless",
+        "first-nested",
+      ],
+      ignore: ["after-comment"],
+    } ],
+>>>>>>> 8b74d1bef0a925587841dc79a644f0fef2341a23
     "at-rule-name-case": "lower",
     "at-rule-name-space-after": "always-single-line",
     "at-rule-semicolon-newline-after": "always",
@@ -26,6 +36,7 @@
     "color-hex-case": "lower",
     "color-hex-length": "short",
     "color-no-invalid-hex": true,
+<<<<<<< HEAD
     "comment-empty-line-before": [
       "always",
       {
@@ -62,6 +73,29 @@
         ],
       }
     ],
+=======
+    "comment-empty-line-before": [ "always", {
+      except: ["first-nested"],
+      ignore: ["stylelint-commands"],
+    } ],
+    "comment-no-empty": true,
+    "comment-whitespace-inside": "always",
+    "custom-property-empty-line-before": [ "always", {
+      except: [
+        "after-custom-property",
+        "first-nested",
+      ],
+      ignore: [
+        "after-comment",
+        "inside-single-line-block",
+      ],
+    } ],
+    "declaration-bang-space-after": "never",
+    "declaration-bang-space-before": "always",
+    "declaration-block-no-duplicate-properties": [ true, {
+      ignore: ["consecutive-duplicates-with-different-values"],
+    } ],
+>>>>>>> 8b74d1bef0a925587841dc79a644f0fef2341a23
     "declaration-block-no-redundant-longhand-properties": true,
     "declaration-block-no-shorthand-property-overrides": true,
     "declaration-block-semicolon-newline-after": "always-multi-line",
@@ -72,6 +106,7 @@
     "declaration-colon-newline-after": "always-multi-line",
     "declaration-colon-space-after": "always-single-line",
     "declaration-colon-space-before": "never",
+<<<<<<< HEAD
     "declaration-empty-line-before": [
       "always",
       {
@@ -85,6 +120,18 @@
         ],
       }
     ],
+=======
+    "declaration-empty-line-before": [ "always", {
+      except: [
+        "after-declaration",
+        "first-nested",
+      ],
+      ignore: [
+        "after-comment",
+        "inside-single-line-block",
+      ],
+    } ],
+>>>>>>> 8b74d1bef0a925587841dc79a644f0fef2341a23
     "font-family-no-duplicate-names": true,
     "function-calc-no-unspaced-operator": true,
     "function-comma-newline-after": "always-multi-line",
@@ -119,6 +166,7 @@
     "number-no-trailing-zeros": true,
     "property-case": "lower",
     "property-no-unknown": true,
+<<<<<<< HEAD
     "rule-empty-line-before": [
       "always-multi-line",
       {
@@ -130,6 +178,15 @@
         ],
       }
     ],
+=======
+    "rule-nested-empty-line-before": [ "always-multi-line", {
+      except: ["first-nested"],
+      ignore: ["after-comment"],
+    } ],
+    "rule-non-nested-empty-line-before": [ "always-multi-line", {
+      ignore: ["after-comment"],
+    } ],
+>>>>>>> 8b74d1bef0a925587841dc79a644f0fef2341a23
     "selector-attribute-brackets-space-inside": "never",
     "selector-attribute-operator-space-after": "never",
     "selector-attribute-operator-space-before": "never",
@@ -156,4 +213,8 @@
     "value-list-comma-space-before": "never",
     "value-list-max-empty-lines": 0,
   },
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 8b74d1bef0a925587841dc79a644f0fef2341a23

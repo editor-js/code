@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # --- proj files ---
 .DS_Store
 Thumbs.db
@@ -9,3 +10,9 @@ node_modules/*
 
 npm-debug.log
 yarn-error.log
+=======
+node_modules/*
+npm-debug.log
+.idea/*
+.DS_Store
+>>>>>>> 8b74d1bef0a925587841dc79a644f0fef2341a23
