@@ -217,7 +217,7 @@ class CodeTool {
    * Default options for CodeTool's select
    *
    * @public
-   * @returns {string}
+   * @returns {array}
    */
   static get DEFAULT_LANGUAGE_OPTIONS () {
       return ['markup', 'css', 'javascript']
