@@ -114,7 +114,9 @@ class CodeTool {
         select.appendChild(option);
     }
 
-    select.value = this.data.language;
+    if (this.data.language !== '') {
+      select.value = this.data.language;
+    }
 
     wrapper.appendChild(select);
 
