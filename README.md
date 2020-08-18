@@ -58,11 +58,11 @@ var editor = EditorJS({
 
 ## Config Params
 
-| Field       | Type     | Default     | Description                    |
-| ----------- | -------- | ----------- | -------------------------------|
-| placeholder | `string` | Enter a code | Code Tool's placeholder string |
-| languagePlaceholder | `string` | Select a language | Code Tool's language placeholder string |
-| languageOptions | `array` | ['markup', 'css', 'javascript'] | Code Tool's list of languages |
+| Field       | Type     | Default     | Description                    | Example      |
+| ----------- | -------- | ----------- | -------------------------------| ------------ |
+| placeholder | `string` | Enter a code | Code Tool's placeholder string |             |
+| languagePlaceholder | `string` | Select a language | Code Tool's language placeholder string |              |
+| languageOptions | `array (string|object)` | ```['markup', 'css', 'javascript']``` | Code Tool's list of languages | ```['markup', 'css', { label: 'c++', value: 'cpp' }]``` |
 
 ## Output data
 

@@ -101,8 +101,15 @@ class CodeTool {
 
     for (let i = 0; i < this.languageOptions.length; i++) {
         const option = document.createElement('option');
-        option.setAttribute('value', this.languageOptions[i]);
-        option.textContent = this.languageOptions[i];
+        const langaugeOption = this.languageOptions[i];
+
+        if (typeof langaugeOption === 'string') {
+          option.setAttribute('value', langaugeOption);
+          option.textContent = langaugeOption;
+        } else {
+          option.setAttribute('value', langaugeOption.value);
+          option.textContent = langaugeOption.label;
+        }
 
         select.appendChild(option);
     }
