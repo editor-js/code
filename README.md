@@ -61,6 +61,7 @@ var editor = EditorJS({
 | Field       | Type     | Description                    |
 | ----------- | -------- | -------------------------------|
 | placeholder | `string` | Code Tool's placeholder string |
+| languagePlaceholder | `string` | Code Tool's language placeholder string |
 
 ## Output data
 
@@ -71,6 +72,7 @@ This Tool returns code.
     "type" : "code",
     "data" : {
         "code": "body {\n font-size: 14px;\n line-height: 16px;\n}",
+        "language": "css",
     }
 }
 ```

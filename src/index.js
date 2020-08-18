@@ -45,6 +45,7 @@ class CodeTool {
     this.api = api;
 
     this.placeholder = this.api.i18n.t(config.placeholder || CodeTool.DEFAULT_PLACEHOLDER);
+    this.languagePlaceholder = this.api.i18n.t(config.languagePlaceholder || CodeTool.DEFAULT_LANGUAGE_PLACEHOLDER);
 
     this.CSS = {
       baseClass: this.api.styles.block,
@@ -56,10 +57,12 @@ class CodeTool {
     this.nodes = {
       holder: null,
       textarea: null,
+      input: null,
     };
 
     this.data = {
       code: data.code || '',
+      language: data.language || '',
     };
 
     this.nodes.holder = this.drawView();
@@ -73,7 +76,8 @@ class CodeTool {
    */
   drawView() {
     const wrapper = document.createElement('div'),
-        textarea = document.createElement('textarea');
+        textarea = document.createElement('textarea'),
+        input = document.createElement('input');
 
     wrapper.classList.add(this.CSS.baseClass, this.CSS.wrapper);
     textarea.classList.add(this.CSS.textarea, this.CSS.input);
@@ -84,6 +88,16 @@ class CodeTool {
     wrapper.appendChild(textarea);
 
     this.nodes.textarea = textarea;
+
+    input.setAttribute('type', 'text');
+    input.classList.add(this.CSS.input);
+    input.value = this.data.language;
+
+    input.placeholder = this.languagePlaceholder;
+
+    wrapper.appendChild(input);
+
+    this.nodes.input = input;
 
     return wrapper;
   }
@@ -108,6 +122,7 @@ class CodeTool {
   save(codeWrapper) {
     return {
       code: codeWrapper.querySelector('textarea').value,
+      language: codeWrapper.querySelector('input').value,
     };
   }
 
@@ -144,6 +159,10 @@ class CodeTool {
     if (this.nodes.textarea) {
       this.nodes.textarea.textContent = data.code;
     }
+
+    if (this.nodes.input) {
+      this.nodes.input.value = data.language;
+    }
   }
 
   /**
@@ -168,6 +187,16 @@ class CodeTool {
    */
   static get DEFAULT_PLACEHOLDER() {
     return 'Enter a code';
+  }
+
+  /**
+   * Default placeholder for CodeTool's input
+   *
+   * @public
+   * @returns {string}
+   */
+  static get DEFAULT_LANGUAGE_PLACEHOLDER () {
+    return 'Enter a language';
   }
 
   /**
