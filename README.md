@@ -58,9 +58,11 @@ var editor = EditorJS({
 
 ## Config Params
 
-| Field       | Type     | Description                    |
-| ----------- | -------- | -------------------------------|
-| placeholder | `string` | Code Tool's placeholder string |
+| Field       | Type     | Default     | Description                    | Example      |
+| ----------- | -------- | ----------- | -------------------------------| ------------ |
+| placeholder | `string` | Enter a code | Code Tool's placeholder string |             |
+| languagePlaceholder | `string` | Select a language | Code Tool's language placeholder string |              |
+| languageOptions | `array (string|object)` | ```['markup', 'css', 'javascript']``` | Code Tool's list of languages | ```['markup', 'css', { label: 'c++', value: 'cpp' }]``` |
 
 ## Output data
 
@@ -71,6 +73,7 @@ This Tool returns code.
     "type" : "code",
     "data" : {
         "code": "body {\n font-size: 14px;\n line-height: 16px;\n}",
+        "language": "css",
     }
 }
 ```

@@ -45,6 +45,8 @@ class CodeTool {
     this.api = api;
 
     this.placeholder = this.api.i18n.t(config.placeholder || CodeTool.DEFAULT_PLACEHOLDER);
+    this.languagePlaceholder = this.api.i18n.t(config.languagePlaceholder || CodeTool.DEFAULT_LANGUAGE_PLACEHOLDER);
+    this.languageOptions = this.api.i18n.t(config.langaugeOptions || CodeTool.DEFAULT_LANGUAGE_OPTIONS);
 
     this.CSS = {
       baseClass: this.api.styles.block,
@@ -56,10 +58,12 @@ class CodeTool {
     this.nodes = {
       holder: null,
       textarea: null,
+      select: null,
     };
 
     this.data = {
       code: data.code || '',
+      language: data.language || '',
     };
 
     this.nodes.holder = this.drawView();
@@ -73,7 +77,8 @@ class CodeTool {
    */
   drawView() {
     const wrapper = document.createElement('div'),
-        textarea = document.createElement('textarea');
+        textarea = document.createElement('textarea'),
+        select = document.createElement('select');
 
     wrapper.classList.add(this.CSS.baseClass, this.CSS.wrapper);
     textarea.classList.add(this.CSS.textarea, this.CSS.input);
@@ -84,6 +89,38 @@ class CodeTool {
     wrapper.appendChild(textarea);
 
     this.nodes.textarea = textarea;
+
+    select.classList.add(this.CSS.input)
+
+    const placeholderOption = document.createElement('option');
+    placeholderOption.setAttribute('disabled', true);
+    placeholderOption.setAttribute('selected', true);
+    placeholderOption.textContent = this.languagePlaceholder;
+
+    select.appendChild(placeholderOption);
+
+    for (let i = 0; i < this.languageOptions.length; i++) {
+        const option = document.createElement('option');
+        const langaugeOption = this.languageOptions[i];
+
+        if (typeof langaugeOption === 'string') {
+          option.setAttribute('value', langaugeOption);
+          option.textContent = langaugeOption;
+        } else {
+          option.setAttribute('value', langaugeOption.value);
+          option.textContent = langaugeOption.label;
+        }
+
+        select.appendChild(option);
+    }
+
+    if (this.data.language !== '') {
+      select.value = this.data.language;
+    }
+
+    wrapper.appendChild(select);
+
+    this.nodes.select = select;
 
     return wrapper;
   }
@@ -108,6 +145,7 @@ class CodeTool {
   save(codeWrapper) {
     return {
       code: codeWrapper.querySelector('textarea').value,
+      language: codeWrapper.querySelector('select').value,
     };
   }
 
@@ -144,6 +182,10 @@ class CodeTool {
     if (this.nodes.textarea) {
       this.nodes.textarea.textContent = data.code;
     }
+
+    if (this.nodes.select) {
+      this.nodes.select.value = data.language;
+    }
   }
 
   /**
@@ -168,6 +210,26 @@ class CodeTool {
    */
   static get DEFAULT_PLACEHOLDER() {
     return 'Enter a code';
+  }
+
+  /**
+   * Default placeholder for CodeTool's select
+   *
+   * @public
+   * @returns {string}
+   */
+  static get DEFAULT_LANGUAGE_PLACEHOLDER () {
+    return 'Select a language'
+  }
+
+  /**
+   * Default options for CodeTool's select
+   *
+   * @public
+   * @returns {array}
+   */
+  static get DEFAULT_LANGUAGE_OPTIONS () {
+      return ['markup', 'css', 'javascript']
   }
 
   /**
