@@ -18,6 +18,16 @@ require('./index.css').toString();
  * Code Tool for the Editor.js allows to include code examples in your articles.
  */
 class CodeTool {
+
+  /**
+   * Notify core that read-only mode is supported
+   *
+   * @returns {boolean}
+   */
+  static get isReadOnlySupported() {
+    return true;
+  }
+
   /**
    * Allow to press Enter inside the CodeTool textarea
    *
@@ -40,9 +50,11 @@ class CodeTool {
    * @param {CodeData} options.data — previously saved plugin code
    * @param {object} options.config - user config for Tool
    * @param {object} options.api - Editor.js API
+   * @param {boolean} options.readOnly - read only mode flag
    */
-  constructor({ data, config, api }) {
+  constructor({ data, config, api, readOnly }) {
     this.api = api;
+    this.readOnly = readOnly;
 
     this.placeholder = this.api.i18n.t(config.placeholder || CodeTool.DEFAULT_PLACEHOLDER);
 
@@ -80,6 +92,10 @@ class CodeTool {
     textarea.textContent = this.data.code;
 
     textarea.placeholder = this.placeholder;
+
+    if (this.readOnly) {
+      textarea.disabled = true;
+    }
 
     wrapper.appendChild(textarea);
 
