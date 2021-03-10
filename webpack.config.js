@@ -12,22 +12,23 @@ module.exports = {
               presets: [ '@babel/preset-env' ],
             },
           },
-        ]
+        ],
       },
       {
         test: /\.css$/,
         use: [
           'style-loader',
-          'css-loader'
-        ]
-      }
-    ]
+          'css-loader',
+        ],
+      },
+    ],
   },
   output: {
     path: __dirname + '/dist',
     publicPath: '/',
     filename: 'bundle.js',
     library: 'CodeTool',
-    libraryTarget: 'umd'
-  }
+    libraryTarget: 'umd',
+    libraryExport: 'default',
+  },
 };
