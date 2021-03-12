@@ -1,7 +1,8 @@
 /**
  * Build styles
  */
-require('./index.css').toString();
+import { getLineStartPosition } from './utils/string';
+import './index.css';
 
 /**
  * CodeTool for Editor.js
@@ -17,7 +18,7 @@ require('./index.css').toString();
 /**
  * Code Tool for the Editor.js allows to include code examples in your articles.
  */
-class CodeTool {
+export default class CodeTool {
 
   /**
    * Notify core that read-only mode is supported
@@ -98,6 +99,17 @@ class CodeTool {
     }
 
     wrapper.appendChild(textarea);
+
+    /**
+     * Enable keydown handlers
+     */
+    textarea.addEventListener('keydown', (event) => {
+      switch (event.code) {
+        case 'Tab':
+          this.tabHandler(event);
+          break;
+      }
+    });
 
     this.nodes.textarea = textarea;
 
@@ -209,6 +221,61 @@ class CodeTool {
       code: true, // Allow HTML tags
     };
   }
-}
 
-module.exports = CodeTool;
+  /**
+   * Handles Tab key pressing (adds/removes indentations)
+   *
+   * @private
+   * @param {KeyboardEvent} event - keydown
+   * @returns {void}
+   */
+  tabHandler(event) {
+    /**
+     * Prevent editor.js tab handler
+     */
+    event.stopPropagation();
+
+    /**
+     * Prevent native tab behaviour
+     */
+    event.preventDefault();
+
+    const textarea = event.target;
+    const isShiftPressed = event.shiftKey;
+    const caretPosition = textarea.selectionStart;
+    const value = textarea.value;
+    const indentation = '  ';
+
+    let newCaretPosition;
+
+    /**
+     * For Tab pressing, just add an indentation to the caret position
+     */
+    if (!isShiftPressed) {
+      newCaretPosition = caretPosition + indentation.length;
+
+      textarea.value = value.substring(0, caretPosition) + indentation + value.substring(caretPosition);
+    } else {
+      /**
+       * For Shift+Tab pressing, remove an indentation from the start of line
+       */
+      const currentLineStart = getLineStartPosition(value, caretPosition);
+      const firstLineChars = value.substr(currentLineStart, indentation.length);
+
+      if (firstLineChars !== indentation) {
+        return;
+      }
+
+      /**
+       * Trim the first two chars from the start of line
+       */
+      textarea.value = value.substring(0, currentLineStart) + value.substring(currentLineStart + indentation.length);
+      newCaretPosition = caretPosition - indentation.length;
+    }
+
+    /**
+     * Restore the caret
+     */
+    textarea.setSelectionRange(newCaretPosition, newCaretPosition);
+  }
+}
