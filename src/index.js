@@ -162,7 +162,7 @@ export default class CodeTool {
    * @public
    */
   save(codeWrapper) {
-    if (typeof this.languages === "object" && this.languages > 0) {
+    if (typeof this.languages === "object" && this.languages.length > 0) {
       return {
         language: codeWrapper.querySelector("select").value,
         code: codeWrapper.querySelector("textarea").value,
