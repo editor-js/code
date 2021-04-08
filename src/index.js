@@ -58,20 +58,20 @@ export default class CodeTool {
 
     this.placeholder = this.api.i18n.t(config.placeholder || CodeTool.DEFAULT_PLACEHOLDER);
 
-    this.languages = config.languages; // <<- languages array, if specified
+    this.languages = config.languages;
 
     this.CSS = {
       baseClass: this.api.styles.block,
       input: this.api.styles.input,
       wrapper: "ce-code",
       textarea: "ce-code__textarea",
-      dropdown: "ce-code__dropdown", // <<- class name for dropdown menu
+      dropdown: "ce-code__dropdown",
     };
 
     this.nodes = {
       holder: null,
       textarea: null,
-      dropdown: null, // <<- define dropdown node
+      dropdown: null,
     };
 
     this.data = {
