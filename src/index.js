@@ -58,7 +58,7 @@ export default class CodeTool {
 
     this.placeholder = this.api.i18n.t(config.placeholder || CodeTool.DEFAULT_PLACEHOLDER);
 
-    this.languages = this.config.languages; // <<- languages array, if specified
+    this.languages = config.languages; // <<- languages array, if specified
 
     this.CSS = {
       baseClass: this.api.styles.block,
@@ -91,22 +91,28 @@ export default class CodeTool {
     const wrapper = document.createElement("div"),
       textarea = document.createElement("textarea");
 
-    if (typeof this.config.languages === "object") {
+    if (typeof this.languages === "object" && this.languages.length > 0) {
       const dropdown = document.createElement("select");
 
       dropdown.classList.add(this.CSS.dropdown, this.CSS.input);
       dropdown.value = this.data.languages;
 
-      this.languages.forEach((lang) => {
-        let option = document.createElement("option");
+      let isValidLang = true;
 
+      for (const lang of this.languages) {
+        if (typeof lang !== "string") {
+          isValidLang = false;
+          break;
+        }
+
+        let option = document.createElement("option");
         option.classList.add(`${this.CSS.dropdown}__option`);
         option.textContent = lang;
-
         dropdown.appendChild(option);
-      });
+      }
 
-      wrapper.appendChild(dropdown);
+      if (isValidLang) wrapper.appendChild(dropdown);
+
       this.nodes.dropdown = dropdown;
     }
 
@@ -156,7 +162,7 @@ export default class CodeTool {
    * @public
    */
   save(codeWrapper) {
-    if (typeof this.config.languages === "object") {
+    if (typeof this.languages === "object" && this.languages > 0) {
       return {
         language: codeWrapper.querySelector("select").value,
         code: codeWrapper.querySelector("textarea").value,
