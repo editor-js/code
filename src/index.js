@@ -91,6 +91,7 @@ export default class CodeTool {
     wrapper.classList.add(this.CSS.baseClass, this.CSS.wrapper);
     textarea.classList.add(this.CSS.textarea, this.CSS.input);
     textarea.textContent = this.data.code;
+    textarea.setAttribute("spellcheck", "false");
 
     textarea.placeholder = this.placeholder;
 
