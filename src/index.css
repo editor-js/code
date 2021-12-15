@@ -1,14 +1,31 @@
 .ce-code__textarea {
-    min-height: 200px;
-    font-family: Menlo, Monaco, Consolas, Courier New, monospace;
-    color: #41314e;
-    line-height: 1.6em;
-    font-size: 12px;
-    background: #f8f7fa;
-    border: 1px solid #f1f1f4;
-    box-shadow: none;
-    white-space: pre;
-    word-wrap: normal;
-    overflow-x: auto;
-    resize: vertical;
+  min-height: 200px;
+  font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+  color: #41314e;
+  line-height: 1.6em;
+  font-size: 12px;
+  background: #f8f7fa;
+  border: 1px solid #f1f1f4;
+  box-shadow: none;
+  white-space: pre;
+  word-wrap: normal;
+  overflow-x: auto;
+  resize: vertical;
+}
+
+.ce-code__dropdown {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearnance: none;
+  appearnance: none;
+  min-height: 40px;
+  margin-bottom: 5px;
+  line-height: 1.6em;
+  font-size: 14px;
+}
+
+.ce-code__dropdown select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #000;
 }
