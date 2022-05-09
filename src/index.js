@@ -64,15 +64,52 @@ export default class CodeTool {
       input: this.api.styles.input,
       wrapper: 'ce-code',
       textarea: 'ce-code__textarea',
+      select: 'ce-code__languagecode'
     };
+
+    if (config.languageList) {
+      this.languageList = config.languageList;
+    }
+    else {
+      this.languageList = [
+        {name: 'Select Language', code: ''},
+        {name: 'HTML', code: 'html'},
+        {name: 'CSS', code: 'css'},
+        {name: 'JavaScript', code: 'js'},
+        {name: 'C#', code: 'csharp'},
+        {name: 'ASP.NET (C#)', code: 'aspnet'},
+        {name: 'Docker', code: 'docker'},
+        {name: 'Git', code: 'git'},
+        {name: 'Java', code: 'java'},
+        {name: 'JSON', code: 'json'},
+        {name: 'JSONP', code: 'jsonp'},
+        {name: 'JSON5', code: 'json5'},
+        {name: 'PowerShell', code: 'powershell'},
+        {name: 'Python', code: 'python'},
+        {name: 'React JSX', code: 'jsx'},
+        {name: 'React TSX', code: 'tsx'},
+        {name: 'Regex', code: 'regex'},
+        {name: 'Sass (Sass)', code: 'sass'},
+        {name: 'Sass (Scss)', code: 'scss'},
+        {name: 'SQL', code: 'sql'},
+        {name: 'TypeScript', code: 'typescript'},
+        {name: 'YAML', code: 'yaml'},
+      ];
+    }
+
+    if (config.additionalLanguages) {
+      this.languageList.push(...config.additionalLanguages);
+    }
 
     this.nodes = {
       holder: null,
       textarea: null,
+      picker: null,
     };
 
     this.data = {
       code: data.code || '',
+      languageCode: data.languageCode || ''
     };
 
     this.nodes.holder = this.drawView();
@@ -86,18 +123,29 @@ export default class CodeTool {
    */
   drawView() {
     const wrapper = document.createElement('div'),
-        textarea = document.createElement('textarea');
+        textarea = document.createElement('textarea'),
+        picker = document.createElement('select');
+
+    this.languageList.forEach(item => {
+      let option = document.createElement("option");
+      option.text = item.name;
+      option.value = item.code;
+      picker.appendChild(option);
+    });
 
     wrapper.classList.add(this.CSS.baseClass, this.CSS.wrapper);
     textarea.classList.add(this.CSS.textarea, this.CSS.input);
     textarea.textContent = this.data.code;
+    picker.value = this.data.languageCode;
 
     textarea.placeholder = this.placeholder;
 
     if (this.readOnly) {
       textarea.disabled = true;
+      picker.disabled = true;
     }
 
+    wrapper.appendChild(picker);
     wrapper.appendChild(textarea);
 
     /**
@@ -112,6 +160,7 @@ export default class CodeTool {
     });
 
     this.nodes.textarea = textarea;
+    this.nodes.picker = picker;
 
     return wrapper;
   }
@@ -136,6 +185,7 @@ export default class CodeTool {
   save(codeWrapper) {
     return {
       code: codeWrapper.querySelector('textarea').value,
+      languageCode: `language-${codeWrapper.querySelector('select').value}`
     };
   }
 
@@ -171,6 +221,10 @@ export default class CodeTool {
 
     if (this.nodes.textarea) {
       this.nodes.textarea.textContent = data.code;
+    }
+
+    if(this.nodes.picker) {
+      this.nodes.picker.value = data.languageCode;
     }
   }
 

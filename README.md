@@ -4,6 +4,10 @@
 
 Code Tool for the [Editor.js](https://ifmo.su/editor) allows to include code examples in your articles.
 
+This fork is made to work with Prism Highlight.
+
+You can configure what languages are available through `config.languageList` or supplement the default list with `config.additionalLanguages` 
+
 ![](https://capella.pics/8df022f5-b4d5-4d30-a527-2a0efb63f291.jpg)
 
 ## Installation
@@ -71,6 +75,7 @@ This Tool returns code.
     "type" : "code",
     "data" : {
         "code": "body {\n font-size: 14px;\n line-height: 16px;\n}",
+        "language-code": "language-javascript"
     }
 }
 ```
