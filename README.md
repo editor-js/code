@@ -17,7 +17,7 @@ You can configure what languages are available through `config.languageList` or 
 Get the package
 
 ```shell
-npm i --save-dev @editorjs/code
+npm i --save-dev@eonasdan/editorjs-code
 ```
 
 Include module at your application
@@ -33,9 +33,9 @@ const CodeTool = require('@editorjs/code');
 
 ### Load from CDN
 
-You can load specific version of package from [jsDelivr CDN](https://www.jsdelivr.com/package/npm/@editorjs/code).
+You can load specific version of package from [jsDelivr CDN](https://www.jsdelivr.com/package/npm/@eonasdan/editorjs-code).
 
-`https://cdn.jsdelivr.net/npm/@editorjs/code@2.0.0`
+`https://cdn.jsdelivr.net/npm/@eonasdan/editorjs-code`
 
 Require this script on a page with Editor.js.
 
