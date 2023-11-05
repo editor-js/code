@@ -11,14 +11,24 @@
   "description": "Code Tool for Editor.js",
   "license": "MIT",
   "repository": "https://github.com/editor-js/code",
-  "main": "./dist/bundle.js",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/code.umd.js",
+  "module": "./dist/code.mjs",
+  "exports": {
+    ".": {
+      "import": "./dist/code.mjs",
+      "require": "./dist/code.umd.js"
+    }
+  },
   "scripts": {
-    "build": "webpack --mode production",
-    "build:dev": "webpack --mode development --watch"
+    "dev": "vite",
+    "build": "vite build"
   },
   "author": {
-    "name": "CodeX",
-    "email": "team@codex.so"
+    "name": "CodeX Team",
+    "email": "team@ifmo.su"
   },
   "devDependencies": {
     "vite": "^4.5.0",
