@@ -1,33 +1,37 @@
 {
   "name": "@editorjs/code",
-  "version": "2.8.0",
+  "version": "2.9.0",
   "keywords": [
     "codex editor",
     "code",
-    "tool",
     "editor.js",
     "editorjs"
   ],
   "description": "Code Tool for Editor.js",
   "license": "MIT",
   "repository": "https://github.com/editor-js/code",
-  "main": "./dist/bundle.js",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/code.umd.js",
+  "module": "./dist/code.mjs",
+  "exports": {
+    ".": {
+      "import": "./dist/code.mjs",
+      "require": "./dist/code.umd.js"
+    }
+  },
   "scripts": {
-    "build": "webpack --mode production",
-    "build:dev": "webpack --mode development --watch"
+    "dev": "vite",
+    "build": "vite build"
   },
   "author": {
-    "name": "CodeX",
+    "name": "CodeX Team",
     "email": "team@codex.so"
   },
   "devDependencies": {
-    "@babel/core": "^7.3.4",
-    "@babel/preset-env": "^7.3.4",
-    "babel-loader": "^8.0.5",
-    "css-loader": "^3.5.3",
-    "style-loader": "^1.2.1",
-    "webpack": "^4.29.5",
-    "webpack-cli": "^3.2.3"
+    "vite": "^4.5.0",
+    "vite-plugin-css-injected-by-js": "^3.3.0"
   },
   "dependencies": {
     "@codexteam/icons": "^0.0.5"
