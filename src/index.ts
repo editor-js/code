@@ -29,7 +29,9 @@ interface CodeData {
 export default class CodeTool {
   api: API;
   readOnly: boolean;
-  _data: CodeData;
+  _data: CodeData = {
+    code: '',
+  };
   config: ToolConfig;
   nodes: {
     holder: HTMLDivElement | null,
@@ -74,7 +76,7 @@ export default class CodeTool {
       textarea: null,
     };
 
-    this._data = {
+    this.data = {
       code: data.code || '',
     };
 
@@ -87,7 +89,7 @@ export default class CodeTool {
 
     wrapper.classList.add(this.CSS.baseClass, this.CSS.wrapper);
     textarea.classList.add(this.CSS.textarea, this.CSS.input);
-    textarea.textContent = this._data.code;
+    textarea.textContent = this.data.code;
 
     textarea.placeholder = this.placeholder;
 
@@ -132,7 +134,7 @@ export default class CodeTool {
   onPaste(event: HTMLPasteEvent) {
     const content = event.detail.data;
 
-    this._data = {
+    this.data = {
       code: content.textContent || '',
     };
   }
@@ -162,7 +164,7 @@ export default class CodeTool {
 
   static get pasteConfig() {
     return {
-      tags: ['pre'],
+      tags: [ 'pre' ],
     };
   }
 
