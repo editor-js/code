@@ -30,6 +30,7 @@
     "email": "team@codex.so"
   },
   "devDependencies": {
+    "@editorjs/editorjs": "^2.28.2",
     "vite": "^4.5.0",
     "vite-plugin-css-injected-by-js": "^3.3.0"
   },
