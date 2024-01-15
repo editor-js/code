@@ -72,7 +72,7 @@ export default class CodeTool {
       textarea: null,
     };
 
-    this.data = {
+    this._data = {
       code: data.code || '',
     };
 
@@ -91,7 +91,7 @@ export default class CodeTool {
 
     wrapper.classList.add(this.CSS.baseClass, this.CSS.wrapper);
     textarea.classList.add(this.CSS.textarea, this.CSS.input);
-    textarea.textContent = this.data.code;
+    textarea.textContent = this._data.code;
 
     textarea.placeholder = this.placeholder;
 
@@ -148,7 +148,7 @@ export default class CodeTool {
   onPaste(event) {
     const content = event.detail.data;
 
-    this.data = {
+    this._data = {
       code: content.textContent,
     };
   }
