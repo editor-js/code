@@ -3,8 +3,14 @@
  */
 import './index.css';
 import { getLineStartPosition } from './utils/string';
+// @ts-ignore
 import { IconBrackets } from '@codexteam/icons';
 
+import type { API, HTMLPasteEvent, ToolConfig } from "@editorjs/editorjs";
+
+interface CodeData {
+  code: string;
+}
 
 /**
  * CodeTool for Editor.js
@@ -21,40 +27,36 @@ import { IconBrackets } from '@codexteam/icons';
  * Code Tool for the Editor.js allows to include code examples in your articles.
  */
 export default class CodeTool {
-  /**
-   * Notify core that read-only mode is supported
-   *
-   * @returns {boolean}
-   */
+  api: API;
+  readOnly: boolean;
+  _data: CodeData;
+  config: ToolConfig;
+  nodes: {
+    holder: HTMLDivElement | null,
+    textarea: HTMLTextAreaElement | null,
+  };
+  placeholder: string;
+  CSS: {
+    baseClass: string,
+    wrapper: string,
+    input: string,
+    textarea: string
+  };
+
   static get isReadOnlySupported() {
     return true;
   }
 
-  /**
-   * Allow to press Enter inside the CodeTool textarea
-   *
-   * @returns {boolean}
-   * @public
-   */
   static get enableLineBreaks() {
     return true;
   }
 
-  /**
-   * @typedef {object} CodeData — plugin saved data
-   * @property {string} code - previously saved plugin code
-   */
-
-  /**
-   * Render plugin`s main Element and fill it with saved data
-   *
-   * @param {object} options - tool constricting options
-   * @param {CodeData} options.data — previously saved plugin code
-   * @param {object} options.config - user config for Tool
-   * @param {object} options.api - Editor.js API
-   * @param {boolean} options.readOnly - read only mode flag
-   */
-  constructor({ data, config, api, readOnly }) {
+  constructor({ data, config, api, readOnly }: {
+    api: API,
+    readOnly: boolean,
+    data: CodeData,
+    config: ToolConfig
+  }) {
     this.api = api;
     this.readOnly = readOnly;
 
@@ -72,26 +74,20 @@ export default class CodeTool {
       textarea: null,
     };
 
-    this.data = {
+    this._data = {
       code: data.code || '',
     };
 
     this.nodes.holder = this.drawView();
   }
 
-  /**
-   * Create Tool's view
-   *
-   * @returns {HTMLElement}
-   * @private
-   */
   drawView() {
     const wrapper = document.createElement('div'),
-        textarea = document.createElement('textarea');
+      textarea = document.createElement('textarea');
 
     wrapper.classList.add(this.CSS.baseClass, this.CSS.wrapper);
     textarea.classList.add(this.CSS.textarea, this.CSS.input);
-    textarea.textContent = this.data.code;
+    textarea.textContent = this._data.code;
 
     textarea.placeholder = this.placeholder;
 
@@ -117,56 +113,34 @@ export default class CodeTool {
     return wrapper;
   }
 
-  /**
-   * Return Tool's view
-   *
-   * @returns {HTMLDivElement} this.nodes.holder - Code's wrapper
-   * @public
-   */
-  render() {
+  render(): HTMLDivElement | null {
     return this.nodes.holder;
   }
 
-  /**
-   * Extract Tool's data from the view
-   *
-   * @param {HTMLDivElement} codeWrapper - CodeTool's wrapper, containing textarea with code
-   * @returns {CodeData} - saved plugin code
-   * @public
-   */
-  save(codeWrapper) {
+  save(codeWrapper: HTMLDivElement): CodeData {
+    const textArea = codeWrapper.querySelector('textarea')
+    if (textArea) {
+      return {
+        code: textArea.value,
+      };
+    }
     return {
-      code: codeWrapper.querySelector('textarea').value,
+      code: '',
     };
   }
 
-  /**
-   * onPaste callback fired from Editor`s core
-   *
-   * @param {PasteEvent} event - event with pasted content
-   */
-  onPaste(event) {
+  onPaste(event: HTMLPasteEvent) {
     const content = event.detail.data;
 
-    this.data = {
-      code: content.textContent,
+    this._data = {
+      code: content.textContent || '',
     };
   }
 
-  /**
-   * Returns Tool`s data from private property
-   *
-   * @returns {CodeData}
-   */
-  get data() {
+  get data(): CodeData {
     return this._data;
   }
 
-  /**
-   * Set Tool`s data to private property and update view
-   *
-   * @param {CodeData} data - saved tool data
-   */
   set data(data) {
     this._data = data;
 
@@ -175,13 +149,6 @@ export default class CodeTool {
     }
   }
 
-  /**
-   * Get Tool toolbox settings
-   * icon - Tool icon's SVG
-   * title - title to show in toolbox
-   *
-   * @returns {{icon: string, title: string}}
-   */
   static get toolbox() {
     return {
       icon: IconBrackets,
@@ -189,48 +156,23 @@ export default class CodeTool {
     };
   }
 
-  /**
-   * Default placeholder for CodeTool's textarea
-   *
-   * @public
-   * @returns {string}
-   */
   static get DEFAULT_PLACEHOLDER() {
     return 'Enter a code';
   }
 
-  /**
-   *  Used by Editor.js paste handling API.
-   *  Provides configuration to handle CODE tag.
-   *
-   * @static
-   * @returns {{tags: string[]}}
-   */
   static get pasteConfig() {
     return {
-      tags: [ 'pre' ],
+      tags: ['pre'],
     };
   }
 
-  /**
-   * Automatic sanitize config
-   *
-   * @returns {{code: boolean}}
-   */
   static get sanitize() {
     return {
       code: true, // Allow HTML tags
     };
   }
 
-  /**
-   * Handles Tab key pressing (adds/removes indentations)
-   *
-   * @private
-   * @param {KeyboardEvent} event - keydown
-   * @returns {void}
-   */
-  tabHandler(event) {
+  tabHandler(event: KeyboardEvent) {
     /**
      * Prevent editor.js tab handler
      */
@@ -241,7 +183,7 @@ export default class CodeTool {
      */
     event.preventDefault();
 
-    const textarea = event.target;
+    const textarea = event.target as HTMLTextAreaElement;
     const isShiftPressed = event.shiftKey;
     const caretPosition = textarea.selectionStart;
     const value = textarea.value;

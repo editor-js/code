@@ -10,7 +10,7 @@
  * @param {number} position - search starting position
  * @returns {number}
  */
-export function getLineStartPosition(string, position) {
+export function getLineStartPosition(string: string, position: number) {
   const charLength = 1;
   let char = '';
 
