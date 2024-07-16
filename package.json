@@ -15,23 +15,34 @@
   ],
   "main": "./dist/code.umd.js",
   "module": "./dist/code.mjs",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/code.mjs",
-      "require": "./dist/code.umd.js"
+      "require": "./dist/code.umd.js",
+      "types": "./dist/index.d.ts"
     }
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "lint": "eslint src/**.ts --ext .ts",
+    "lint:errors": "eslint src/**.ts --quiet",
+    "lint:fix": "eslint src/**.ts --fix"
   },
   "author": {
     "name": "CodeX Team",
     "email": "team@codex.so"
   },
   "devDependencies": {
+    "@editorjs/editorjs": "^2.30.2",
+    "@typescript-eslint/eslint-plugin": "^7.16.1",
+    "@typescript-eslint/parser": "^7.16.1",
+    "eslint": "^8.57.0",
+    "typescript": "^5.5.3",
     "vite": "^4.5.0",
-    "vite-plugin-css-injected-by-js": "^3.3.0"
+    "vite-plugin-css-injected-by-js": "^3.3.0",
+    "vite-plugin-dts": "^3.9.1"
   },
   "dependencies": {
     "@codexteam/icons": "^0.0.5"
