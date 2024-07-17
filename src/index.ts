@@ -1,7 +1,7 @@
 import './index.css';
 import { getLineStartPosition } from './utils/string';
 import { IconBrackets } from '@codexteam/icons';
-import { API, PasteEvent } from '@editorjs/editorjs';
+import { API, BlockToolConstructorOptions, BlockTool, PasteEvent } from '@editorjs/editorjs';
 
 /**
  * CodeTool for Editor.js
@@ -11,7 +11,7 @@ import { API, PasteEvent } from '@editorjs/editorjs';
  */
 
 /**
- * @description CodeTool's data
+ * @description CodeTool generates data in this format
  */
 export interface CodeData {
   code: string;
@@ -43,53 +43,33 @@ interface CodeToolNodes {
 }
 
 /**
- * @description Constructor arguments for CodeTool
- */
-interface ConstructorArgs {
-  /** Previously saved data */
-  data: CodeData;
-  /** User config for the tool */
-  config: CodeConfig;
-  /** Editor.js API */
-  api: API;
-  /** Read-only mode flag */
-  readOnly: boolean;
-}
-
-/**
  * Code Tool for the Editor.js allows to include code examples in your articles.
  */
-export default class CodeTool {
+export default class CodeTool implements BlockTool {
   /** 
   * Editor.js API
-  * @private
   */
   private api: API;
   /**
   * Read-only mode flag
-  * @private
   */
   private readOnly: boolean;
   /**
    * CodeTool's placeholder
-   * @private
    */
   private placeholder: string;
   /**
    * CodeTool's CSS
-   * @private
    */
   private CSS: CodeToolCSS;
   /**
    * CodeTool nodes
-   * @private
    */
   private nodes: CodeToolNodes;
   /**
   * CodeTool's data
-  * @private
   */
-  private _data: CodeData;
+  private _data!: CodeData;
 
   /**
    * Notify core that read-only mode is supported
@@ -124,7 +104,7 @@ export default class CodeTool {
    * @param {object} options.api - Editor.js API
    * @param {boolean} options.readOnly - read only mode flag
    */
-  constructor({ data, config, api, readOnly }: ConstructorArgs) {
+  constructor({ data, config, api, readOnly }: BlockToolConstructorOptions) {
     this.api = api;
     this.readOnly = readOnly;
 
@@ -142,7 +122,7 @@ export default class CodeTool {
       textarea: null,
     };
 
-    this._data = {
+    this.data = {
       code: data.code || '',
     };
 
@@ -161,7 +141,7 @@ export default class CodeTool {
 
     wrapper.classList.add(this.CSS.baseClass, this.CSS.wrapper);
     textarea.classList.add(this.CSS.textarea, this.CSS.input);
-    textarea.textContent = this._data.code;
+    textarea.textContent = this.data.code;
 
     textarea.placeholder = this.placeholder;
 
@@ -220,7 +200,7 @@ export default class CodeTool {
 
     if ('data' in detail) {
       const content = detail.data as string;
-      this._data = {
+      this.data = {
         code: content || '',
       };
     }
