@@ -1,7 +1,7 @@
 import './index.css';
 import { getLineStartPosition } from './utils/string';
 import { IconBrackets } from '@codexteam/icons';
-import { API, BlockToolConstructorOptions, BlockTool, PasteEvent } from '@editorjs/editorjs';
+import { API, BlockTool, BlockToolConstructorOptions, PasteEvent, SanitizerConfig } from '@editorjs/editorjs';
 
 /**
  * CodeTool for Editor.js
@@ -11,14 +11,14 @@ import { API, BlockToolConstructorOptions, BlockTool, PasteEvent } from '@editor
  */
 
 /**
- * @description CodeTool generates data in this format
+ * CodeTool generates data in this format
  */
 export interface CodeData {
   code: string;
 }
 
 /**
- * @description CodeTool's config from User
+ * CodeTool's config from User
  */
 export interface CodeConfig {
   placeholder: string
@@ -270,7 +270,7 @@ export default class CodeTool implements BlockTool {
    *
    * @returns {{code: boolean}}
    */
-  static get sanitize(): { code: boolean } {
+  static get sanitize(): SanitizerConfig {
     return {
       code: true, // Allow HTML tags
     };
