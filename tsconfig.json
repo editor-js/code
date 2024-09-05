@@ -1,15 +1,10 @@
 {
   "compilerOptions": {
-    /* Language and Environment */
-    "target": "es2020" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
-    /* Modules */
-    "module": "CommonJS" /* Specify what module code is generated. */,
-    "typeRoots": [
-      "./node_modules/@types"
-    ] /* Specify multiple folders that act like './node_modules/@types'. */,
-    "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
-    /* Type Checking */
-    "strict": true /* Enable all strict type-checking options. */
+    "target": "es2020",
+    "module": "CommonJS",
+    "typeRoots": ["./node_modules/@types"],
+    "forceConsistentCasingInFileNames": true,
+    "strict": true
   },
   "include": ["src/*"]
 }

@@ -5,10 +5,9 @@
  * │1234\n         │
  * │2eda | dadd\n  │ <-- returns 5
  * └───────────────┘
- *
- * @param {string} string - string to process
- * @param {number} position - search starting position
- * @returns {number}
+ * @param string - string to process
+ * @param position - search starting position
+ * @returns
  */
 export function getLineStartPosition(string: string, position: number): number {
   const charLength = 1;
