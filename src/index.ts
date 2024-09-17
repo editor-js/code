@@ -1,7 +1,7 @@
 import './index.css';
 import { getLineStartPosition } from './utils/string';
 import { IconBrackets } from '@codexteam/icons';
-import type { API, BlockTool, BlockToolConstructorOptions, PasteEvent, SanitizerConfig } from '@editorjs/editorjs';
+import type { API, BlockTool, BlockToolConstructorOptions, BlockToolData, PasteConfig, PasteEvent, SanitizerConfig, ToolboxConfig } from '@editorjs/editorjs';
 
 /**
  * CodeTool for Editor.js
@@ -12,7 +12,7 @@ import type { API, BlockTool, BlockToolConstructorOptions, PasteEvent, Sanitizer
 /**
  * Data structure for CodeTool's data
  */
-export interface CodeData {
+export interface CodeData extends BlockToolData {
   /**
    * The code content input by the user
    */
@@ -54,6 +54,16 @@ interface CodeToolNodes {
 }
 
 /**
+ * Options passed to the constructor of a block tool
+ */
+interface CodeToolConstructorOptions extends BlockToolConstructorOptions {
+  /**
+   * Data specific to the CodeTool
+   */
+  data: CodeData;
+}
+
+/**
  * Code Tool for the Editor.js allows to include code examples in your articles.
  */
 export default class CodeTool implements BlockTool {
@@ -86,7 +96,7 @@ export default class CodeTool implements BlockTool {
    * Notify core that read-only mode is supported
    * @returns true if read-only mode is supported
    */
-  static get isReadOnlySupported(): boolean {
+  public static get isReadOnlySupported(): boolean {
     return true;
   }
 
@@ -95,14 +105,9 @@ export default class CodeTool implements BlockTool {
    * This enables multi-line input within the code editor.
    * @returns true if line breaks are allowed in the textarea
    */
-  static get enableLineBreaks(): boolean {
+  public static get enableLineBreaks(): boolean {
     return true;
   }
-
-  /**
-   * CodeData — plugin saved data
-   * code - previously saved plugin code
-   */
 
   /**
    * Render plugin`s main Element and fill it with saved data
@@ -112,7 +117,7 @@ export default class CodeTool implements BlockTool {
    * @param options.api - Editor.js API
    * @param options.readOnly - read only mode flag
    */
-  constructor({ data, config, api, readOnly }: BlockToolConstructorOptions) {
+  constructor({ data, config, api, readOnly }: CodeToolConstructorOptions) {
     this.api = api;
     this.readOnly = readOnly;
 
@@ -131,7 +136,7 @@ export default class CodeTool implements BlockTool {
     };
 
     this.data = {
-      code: data.code as string || '',
+      code: data.code ?? '',
     };
 
     this.nodes.holder = this.drawView();
@@ -199,7 +204,7 @@ export default class CodeTool implements BlockTool {
    * - icon: SVG representation of the Tool's icon
    * - title: Title to show in the toolbox
    */
-  static get toolbox(): { icon: string; title: string } {
+  public static get toolbox(): ToolboxConfig {
     return {
       icon: IconBrackets,
       title: 'Code',
@@ -210,7 +215,7 @@ export default class CodeTool implements BlockTool {
    * Default placeholder for CodeTool's textarea
    * @returns
    */
-  static get DEFAULT_PLACEHOLDER(): string {
+  public static get DEFAULT_PLACEHOLDER(): string {
     return 'Enter a code';
   }
 
@@ -219,7 +224,7 @@ export default class CodeTool implements BlockTool {
    *  Provides configuration to handle CODE tag.
    * @returns
    */
-  static get pasteConfig(): { tags: string[] } {
+  public static get pasteConfig(): PasteConfig {
     return {
       tags: ['pre'],
     };
@@ -229,7 +234,7 @@ export default class CodeTool implements BlockTool {
    * Automatic sanitize config
    * @returns
    */
-  static get sanitize(): SanitizerConfig {
+  public static get sanitize(): SanitizerConfig {
     return {
       code: true, // Allow HTML tags
     };
