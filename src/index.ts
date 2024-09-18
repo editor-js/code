@@ -12,12 +12,12 @@ import type { API, BlockTool, BlockToolConstructorOptions, BlockToolData, PasteC
 /**
  * Data structure for CodeTool's data
  */
-export interface CodeData extends BlockToolData {
+export type CodeData = BlockToolData<{
   /**
    * The code content input by the user
    */
   code: string;
-}
+}>;
 
 /**
  * Configuration options for the CodeTool provided by the user
@@ -56,12 +56,7 @@ interface CodeToolNodes {
 /**
  * Options passed to the constructor of a block tool
  */
-interface CodeToolConstructorOptions extends BlockToolConstructorOptions {
-  /**
-   * Data specific to the CodeTool
-   */
-  data: CodeData;
-}
+export type CodeToolConstructorOptions = BlockToolConstructorOptions<CodeData>;
 
 /**
  * Code Tool for the Editor.js allows to include code examples in your articles.
