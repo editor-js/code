@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Code Plugin Test | EditorJS</title>
+  </head>
+  <body>
+    <div id="editorjs"></div>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest/dist/editor.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
+    <script src="../dist/code.umd.js"></script>
+    <script>
+      const editor = new EditorJS({
+        holder: 'editorjs',
+        data: {
+          time: 1700475383740,
+          blocks: [
+            {
+              id: 'aRMoZePSTD',
+              type: 'header',
+              data: { text: 'Welcome to Editor.js', level: 2 },
+            },
+            {
+              id: 'fcG8CCR5F8',
+              type: 'code',
+              data: { code: 'print("Namaste World")' },
+            },
+          ],
+        },
+        tools: {
+          code: CodeTool,
+          header: Header,
+        },
+      });
+    </script>
+  </body>
+</html>

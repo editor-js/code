@@ -317,6 +317,19 @@ export default class CodeTool implements BlockTool {
         case 'Tab':
           this.tabHandler(event);
           break;
+        case 'Backspace':
+          if (textarea.value.length > 0) {
+            event.stopPropagation();
+          } else {
+            event.preventDefault();
+          }
+          break;
+        case 'ArrowUp':
+        case 'ArrowDown':
+        case 'ArrowLeft':
+        case 'ArrowRight':
+          event.stopPropagation();
+          break;
       }
     });
 
