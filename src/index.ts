@@ -320,8 +320,6 @@ export default class CodeTool implements BlockTool {
         case 'Backspace':
           if (textarea.value.length > 0) {
             event.stopPropagation();
-          } else {
-            event.preventDefault();
           }
           break;
         case 'ArrowUp':
