@@ -188,7 +188,7 @@ export default class CodeTool implements BlockTool {
     this._data = data;
 
     if (this.nodes.textarea) {
-      this.nodes.textarea.textContent = data.code;
+      this.nodes.textarea.value = data.code;
     }
   }
 
@@ -299,7 +299,7 @@ export default class CodeTool implements BlockTool {
 
     wrapper.classList.add(this.CSS.baseClass, this.CSS.wrapper);
     textarea.classList.add(this.CSS.textarea, this.CSS.input);
-    textarea.textContent = this.data.code;
+    textarea.value = this.data.code;
 
     textarea.placeholder = this.placeholder;
 
@@ -316,17 +316,6 @@ export default class CodeTool implements BlockTool {
       switch (event.code) {
         case 'Tab':
           this.tabHandler(event);
-          break;
-        case 'Backspace':
-          if (textarea.value.length > 0) {
-            event.stopPropagation();
-          }
-          break;
-        case 'ArrowUp':
-        case 'ArrowDown':
-        case 'ArrowLeft':
-        case 'ArrowRight':
-          event.stopPropagation();
           break;
       }
     });
