@@ -24,7 +24,7 @@
     }
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "concurrently \"vite\" \"node ./dev/server.js\"",
     "build": "vite build",
     "lint": "eslint",
     "lint:errors": "eslint --quiet",
@@ -47,6 +47,7 @@
     "vite-plugin-dts": "^3.9.1"
   },
   "dependencies": {
-    "@codexteam/icons": "^0.3.2"
+    "@codexteam/icons": "^0.3.2",
+    "concurrently": "^9.1.0"
   }
 }

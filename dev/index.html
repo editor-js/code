@@ -9,8 +9,8 @@
     <div id="editorjs"></div>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
-    <script src="../dist/code.umd.js"></script>
-    <script>
+    <script type="module">
+      import CodeTool from '../src/index.ts';
       const editor = new EditorJS({
         holder: 'editorjs',
         data: {
