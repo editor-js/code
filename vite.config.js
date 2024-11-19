@@ -15,6 +15,9 @@ export default {
       fileName: 'code',
     },
   },
+  server: {
+    open: './dev/index.html',
+  },
   define: {
     NODE_ENV: JSON.stringify(NODE_ENV),
     VERSION: JSON.stringify(VERSION),
