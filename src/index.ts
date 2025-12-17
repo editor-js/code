@@ -1,7 +1,7 @@
 import './index.css';
 import { getLineStartPosition } from './utils/string';
 import { IconBrackets } from '@codexteam/icons';
-import type { API, BlockTool, BlockToolConstructorOptions, BlockToolData, HTMLPasteEvent, PasteConfig, SanitizerConfig, ToolboxConfig } from '@editorjs/editorjs';
+import type { API, BlockTool, BlockToolConstructorOptions, BlockToolData, PasteEvent, HTMLPasteEventDetail, PasteConfig, SanitizerConfig, ToolboxConfig } from '@editorjs/editorjs';
 
 /**
  * CodeTool for Editor.js
@@ -160,10 +160,15 @@ export default class CodeTool implements BlockTool {
    * onPaste callback fired from Editor`s core
    * @param event - event with pasted content
    */
-  public onPaste(event: HTMLPasteEvent): void {
-    this.data = {
-      code: event.detail.data.innerHTML,
-    };
+  public onPaste(event: PasteEvent): void {
+    switch (event.type) {
+      case 'tag': {
+        const element = (event.detail as HTMLPasteEventDetail).data;
+
+        this.handleHTMLPaste(element);
+        break;
+      }
+    }
   }
 
   /**
@@ -317,5 +322,15 @@ export default class CodeTool implements BlockTool {
     this.nodes.textarea = textarea;
 
     return wrapper;
+  }
+
+  /**
+   * Handles pasted HTML content
+   * @param element - pasted HTML element
+   */
+  private handleHTMLPaste(element: HTMLElement): void {
+    this.data = {
+      code: element.innerHTML,
+    };
   }
 }
