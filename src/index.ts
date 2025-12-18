@@ -1,7 +1,7 @@
 import './index.css';
 import { getLineStartPosition } from './utils/string';
 import { IconBrackets } from '@codexteam/icons';
-import type { API, BlockTool, BlockToolConstructorOptions, BlockToolData, PasteConfig, PasteEvent, SanitizerConfig, ToolboxConfig } from '@editorjs/editorjs';
+import type { API, BlockTool, BlockToolConstructorOptions, BlockToolData, PasteEvent, HTMLPasteEventDetail, PasteConfig, SanitizerConfig, ToolboxConfig } from '@editorjs/editorjs';
 
 /**
  * CodeTool for Editor.js
@@ -161,14 +161,13 @@ export default class CodeTool implements BlockTool {
    * @param event - event with pasted content
    */
   public onPaste(event: PasteEvent): void {
-    const detail = event.detail;
+    switch (event.type) {
+      case 'tag': {
+        const element = (event.detail as HTMLPasteEventDetail).data;
 
-    if ('data' in detail) {
-      const content = detail.data as string;
-
-      this.data = {
-        code: content || '',
-      };
+        this.handleHTMLPaste(element);
+        break;
+      }
     }
   }
 
@@ -323,5 +322,15 @@ export default class CodeTool implements BlockTool {
     this.nodes.textarea = textarea;
 
     return wrapper;
+  }
+
+  /**
+   * Extracts the code content from the pasted element's innerHTML and populates the tool's data.
+   * @param element - pasted HTML element
+   */
+  private handleHTMLPaste(element: HTMLElement): void {
+    this.data = {
+      code: element.innerHTML,
+    };
   }
 }
