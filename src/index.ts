@@ -325,7 +325,7 @@ export default class CodeTool implements BlockTool {
   }
 
   /**
-   * Handles pasted HTML content
+   * Extracts the code content from the pasted element's innerHTML and populates the tool's data.
    * @param element - pasted HTML element
    */
   private handleHTMLPaste(element: HTMLElement): void {
