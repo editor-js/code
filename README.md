@@ -2,7 +2,7 @@
 
 # Code Tool for Editor.js
 
-Code Tool for the [Editor.js](https://ifmo.su/editor) allows to include code examples in your articles.
+Code Tool for the [Editor.js](https://editorjs.io/) allows to include code examples in your articles.
 
 ![](assets/68747470733a2f2f636170656c6c612e706963732f38646630323266352d623464352d346433302d613532372d3261306566623633663239312e6a7067.jpeg)
 
