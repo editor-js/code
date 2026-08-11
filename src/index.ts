@@ -330,7 +330,7 @@ export default class CodeTool implements BlockTool {
    */
   private handleHTMLPaste(element: HTMLElement): void {
     this.data = {
-      code: element.innerHTML,
+      code: element.textContent,
     };
   }
 }
